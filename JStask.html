@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Form</title>
+    <style>
+        body{
+            text-align:center;
+            font-family:Arial;
+        }
+
+        table{
+            margin:auto;
+            border-collapse:collapse;
+        }
+
+        table,th,td{
+            border:1px solid black;
+            padding:5px;
+        }
+
+        .form-box{
+            display:inline-block;
+            padding:15px;
+            border:1px solid black;
+        }
+
+        button{
+            background:aqua;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>STUDENT FORM</h2>
+
+    <div class="form-box">
+        <table>
+            <tr>
+                <td>Name</td>
+                <td><input type="text" id="name"></td>
+            </tr>
+
+            <tr>
+                <td>Age</td>
+                <td><input type="number" id="age"></td>
+            </tr>
+
+            <tr>
+                <td>Gender</td>
+                <td>
+                    <input type="radio" id="male" name="gender"> Male
+                    <input type="radio" id="female" name="gender"> Female
+                </td>
+            </tr>
+
+            <tr>
+                <td>Course</td>
+                <td>
+                    <select id="course">
+                        <option>JavaScript</option>
+                        <option>Python</option>
+                        <option>Java</option>
+                    </select>
+                </td>
+            </tr>
+
+            <tr>
+                <td>Email</td>
+                <td><input type="email" id="email"></td>
+            </tr>
+
+            <tr>
+                <td colspan="2">
+                    <button onclick="saveData()">Save</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <br><br>
+
+    <table id="studentTable">
+        <tr>
+            <th>NAME</th>
+            <th>AGE</th>
+            <th>COURSE</th>
+            <th>GENDER</th>
+            <th>EMAIL</th>
+            <th>ACTION</th>
+        </tr>
+    </table>
+
+    <script>
+
+        function saveData(){
+
+            var name = document.getElementById("name").value;
+            var age = document.getElementById("age").value;
+            var course = document.getElementById("course").value;
+            var email = document.getElementById("email").value;
+
+            var gender;
+
+            if(document.getElementById("male").checked){
+                gender = "Male";
+            }
+            else{
+                gender = "Female";
+            }
+
+            var table = document.getElementById("studentTable");
+
+            var row = table.insertRow(-1);
+
+            row.insertCell(0).innerHTML = name;
+            row.insertCell(1).innerHTML = age;
+            row.insertCell(2).innerHTML = course;
+            row.insertCell(3).innerHTML = gender;
+            row.insertCell(4).innerHTML = email;
+            row.insertCell(5).innerHTML =
+            "<button onclick='deleteRow(this)'>Delete</button>";
+
+            document.getElementById("name").value = "";
+            document.getElementById("age").value = "";
+            document.getElementById("email").value = "";
+        }
+
+        function deleteRow(btn){
+            btn.parentNode.parentNode.remove();
+        }
+
+    </script>
+
+</body>
+</html>
